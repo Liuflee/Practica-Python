@@ -10,10 +10,17 @@ TIPOS_CAMBIO = {
     'D': 1 / LIBRA_EURO
 }
 
+import time
+
+def imprimir_texto(texto):
+    for letra in texto:
+        print(letra, end="", flush=True)
+        time.sleep(0.05)
+
 divisa_origen = ''
 
 while not divisa_origen:
-    print("¿Qué divisa quieres cambiar?")
+    imprimir_texto("¿Qué divisa quieres cambiar?\n")
     time.sleep(0.3)
     print("A - Euro a Dolar")
     time.sleep(0.3)
@@ -27,6 +34,7 @@ while not divisa_origen:
     if divisa in TIPOS_CAMBIO:
         divisa_origen = divisa
     else:
+        time.sleep(0.3)
         print("Opción incorrecta\n")
 
 if divisa_origen in ('A', 'D'):
@@ -37,7 +45,10 @@ else:
     divisa_origen_texto = 'libras'
 
 time.sleep(0.3)
-cantidad = float(input("Introduce la cantidad de {} que quieres cambiar: ".format(divisa_origen_texto)))
+
+imprimir_texto("\nIntroduce la cantidad de {} que quieres cambiar: ".format(divisa_origen_texto))
+cantidad = float(input())
+
 tipo_cambio = TIPOS_CAMBIO[divisa_origen]
 monto = cantidad * tipo_cambio
 
@@ -47,7 +58,9 @@ else:
     divisa_destino = 'euros' if divisa_origen == 'C' else 'libras'
 
 time.sleep(0.3)
-print("\nEl monto en {} es: {}\n".format(divisa_destino, round(monto, 2)))
+imprimir_texto("\nEl monto en {} es: {}\n".format(divisa_destino, round(monto, 2)))
 
 time.sleep(0.3)
-input("Presione \"enter\" para salir...")
+
+imprimir_texto("\nPresione \"enter\" para salir...")
+input()
