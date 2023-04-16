@@ -1,7 +1,4 @@
-
-#Importar bibliotecas y funciones, tkinter - interfaz, random, imagetk para el bg, messagebox para el mensaje de error
 import tkinter as tk
-import tkinter.messagebox as mbox
 import requests
 import json
 
