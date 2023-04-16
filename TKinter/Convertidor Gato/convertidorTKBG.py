@@ -1,6 +1,7 @@
 import tkinter as tk
 import requests
 import json
+from PIL import Image, ImageTk
 
 operacionSeleccionada = "USD-EUR"
 
@@ -31,6 +32,14 @@ actualizacionDivisa("fc62c57578864e4da8863911995bc617")
 ventana = tk.Tk()
 ventana.geometry("250x250")
 ventana.title("Convertidor epico 3: Ahora es personal")
+
+canvas = tk.Canvas(ventana, width=250, height=250)
+canvas.pack()
+
+imagenFondo = Image.open('C:/Users/Sumir/Documents/gato.png')
+imagenFondo = ImageTk.PhotoImage(imagenFondo)
+
+canvas.create_image(0, 160, anchor='nw', image=imagenFondo)
 
 #funcion con los calculos
 
@@ -89,9 +98,11 @@ titulo.place(x=50, y=10)
 
 #texto que muestra el resultado, se actualiza despues
 
+
 textoResultado = tk.Label(ventana, text="")
 textoResultado.pack()
 textoResultado.place(x=30, y=120)
+
 
 #boton para cambiar, la funcion del boton se cambia con la funcion de mas abajo
 
