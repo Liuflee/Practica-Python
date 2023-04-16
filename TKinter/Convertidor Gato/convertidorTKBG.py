@@ -3,7 +3,6 @@ import requests
 import json
 from PIL import Image, ImageTk
 
-
 #diccionario con valor de las divisas
 
 divisas = {

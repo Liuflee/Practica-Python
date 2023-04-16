@@ -4,6 +4,7 @@ import tkinter as tk
 import random
 import tkinter.messagebox as mbox
 
+
 #Creación ventana principal de tk
 ventana = tk.Tk()
 ventana.geometry("250x250")
