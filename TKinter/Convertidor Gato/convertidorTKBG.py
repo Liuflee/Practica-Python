@@ -2,6 +2,7 @@ import tkinter as tk
 import requests
 import json
 from PIL import Image, ImageTk
+import time
 
 #diccionario con valor de las divisas
 
@@ -39,8 +40,6 @@ imagenFondo = ImageTk.PhotoImage(imagenFondo)
 
 canvas.create_image(0, 160, anchor='nw', image=imagenFondo)
 
-
-
 #funcion con los calculos
 
 def convertir(divisaOrigen, divisaDestino):
@@ -49,9 +48,13 @@ def convertir(divisaOrigen, divisaDestino):
     valorDestino = round((valorOrigen * tasaConversion), 2)
     textoResultado.config(text=f"{valorDestino} {divisaDestino}")
     
+def imprimirTexto(texto, widget):
+    for i in range(len(texto)):
+        widget.config(text=texto[:i+1])
+        widget.update()
+        time.sleep(0.035)
 
 #menu desplegable con la divisa de origen
-
 operacionesOrigen = ["USD", "EUR", "CLP", "JPY"]
 opcionOrigen = tk.StringVar(ventana)
 opcionOrigen.set(operacionesOrigen[0])
@@ -93,14 +96,16 @@ entradaDivisa.place(x=30, y=100)
 
 #titulo dentro de la ventana
 
-titulo = tk.Label(text="Bienvenid@ al convertidor\nepico de Anette")
+titulo = tk.Label()
 titulo.pack()
 titulo.place(x=50, y=10)
 
+textoImpresion = "Bienvenid@ al convertidor\n epico de Anette"
+imprimirTexto(textoImpresion, titulo)
 #texto que muestra el resultado, se actualiza despues
 
 
-textoResultado = tk.Label(ventana, text="")
+textoResultado = tk.Label(ventana)
 textoResultado.pack()
 textoResultado.place(x=30, y=120)
 
