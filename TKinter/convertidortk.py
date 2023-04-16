@@ -33,7 +33,7 @@ def convertir(divisa_origen, divisa_destino):
     valor_origen = float(num1.get())
     tasa_conversion = eval(f"exchange_rates['{divisa_destino}'] / exchange_rates['{divisa_origen}']")
     valor_destino = round((valor_origen * tasa_conversion), 2)
-    texto.config(text=f"{valor_origen} {divisa_origen} son {valor_destino} {divisa_destino}")
+    texto.config(text=f"{valor_destino} {divisa_destino}")
 
 marco1 = tk.Frame(ventana)
 marco1.place(x=170, y=80)
@@ -77,7 +77,7 @@ titulo.place(x=50, y=10)
 
 texto = tk.Label(ventana, text="")
 texto.pack()
-texto.place(x=10, y=170)
+texto.place(x=30, y=120)
 
 boton = tk.Button(ventana, text="Cambiar")
 boton.pack()
