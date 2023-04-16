@@ -41,6 +41,8 @@ imagenFondo = ImageTk.PhotoImage(imagenFondo)
 
 canvas.create_image(0, 160, anchor='nw', image=imagenFondo)
 
+
+
 #funcion con los calculos
 
 def convertir(divisaOrigen, divisaDestino):
@@ -48,6 +50,7 @@ def convertir(divisaOrigen, divisaDestino):
     tasaConversion = eval(f"divisas['{divisaDestino}'] / divisas['{divisaOrigen}']")
     valorDestino = round((valorOrigen * tasaConversion), 2)
     textoResultado.config(text=f"{valorDestino} {divisaDestino}")
+    
 
 #menu desplegable con la divisa de origen
 
@@ -104,6 +107,12 @@ textoResultado.pack()
 textoResultado.place(x=30, y=120)
 
 
+def imagen():
+    global imagenFondo
+    nuevaImagen = Image.open('C:/Users/Sumir/Documents/gato2.png')
+    imagenFondo = ImageTk.PhotoImage(nuevaImagen)
+    canvas.create_image(0, 140, anchor='nw', image=imagenFondo)
+
 #boton para cambiar, la funcion del boton se cambia con la funcion de mas abajo
 
 boton = tk.Button(ventana, text="Cambiar")
@@ -113,7 +122,9 @@ boton.place(x=100, y=200)
 def cambiarFuncion(*args):
     divisaOrigen = opcionOrigen.get()
     divisaDestino = opcionDestino.get()
-    boton.config(command=lambda: convertir(divisaOrigen, divisaDestino))
+    boton.config(command=lambda: (convertir(divisaOrigen, divisaDestino), imagen()))
+
+    
 
 opcionOrigen.trace("w", cambiarFuncion)
 opcionDestino.trace("w", cambiarFuncion)
