@@ -1,17 +1,27 @@
 import tkinter as tk
+import random
 from PIL import Image, ImageTk
 
-# Crear una nueva ventana
+azar = random.randint(1, 6)
+
 ventana = tk.Tk()
 ventana.geometry("250x250")
 
-# Crear un Canvas del mismo tamaño que la ventana
+if azar == 1:
+    ventana.title("Epic Calculator")
+elif azar==2:
+    ventana.title("Epic Calculator 2: Ahora es personal")
+elif azar==4:
+    ventana.title("Epic Calculator: Ahora con menos bugs")
+elif azar==5:
+    ventana.title("Epic Calculator: ¡Prueba el té de burbujas!")
+else:
+    ventana.title("Eso Tilin")
+
 canvas = tk.Canvas(ventana, width=250, height=250)
 canvas.pack()
 
-
 imagen_fondo = Image.open('C:/Users/Sumir/Documents/XoQ2Mx0.png')
-
 imagen_fondo = ImageTk.PhotoImage(imagen_fondo)
 
 canvas.create_image(0, 0, anchor='nw', image=imagen_fondo)

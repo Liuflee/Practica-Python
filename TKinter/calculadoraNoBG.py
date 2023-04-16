@@ -1,6 +1,22 @@
 import tkinter as tk
+import random
+from PIL import Image, ImageTk
+
+azar = random.randint(1, 6)
+
 ventana = tk.Tk()
 ventana.geometry("250x250")
+
+if azar == 1:
+    ventana.title("Epic Calculator")
+elif azar==2:
+    ventana.title("Epic Calculator 2: Ahora es personal")
+elif azar==4:
+    ventana.title("Epic Calculator: Ahora con menos bugs")
+elif azar==5:
+    ventana.title("Epic Calculator: ¡Prueba el té de burbujas!")
+else:
+    ventana.title("Eso Tilin")
 
 def suma():
     resultado = float(num1.get()) + float(num2.get())
@@ -44,12 +60,10 @@ titulo =tk.Label(text="Bienvenid@ a la calculadora\nepica de Anette")
 titulo.pack()
 titulo.place(x=50, y=30)
 
-marco = tk.Frame(ventana)
-marco.pack()
-marco.place(x=70, y=150)
 
-texto = tk.Label(marco, text="")
+texto = tk.Label(ventana, text="")
 texto.pack()
+texto.place(x=70, y=150)
 
 boton = tk.Button(ventana, text="Calcular")
 boton.pack()
