@@ -2,90 +2,114 @@ import tkinter as tk
 import requests
 import json
 
-operacion_seleccionada = "USD-EUR"
+operacionSeleccionada = "USD-EUR"
 
-exchange_rates = {
+
+
+#diccionario con valor de las divisas
+
+divisas = {
     "USD": 1.0,
     "EUR": 0.8329,
     "CLP": 772.9476,
     "JPY": 109.4494
 }
 
-def actualizacion_divisa(api_key):
+#funcion que actualiza las divisas con la api de openexchangerates.org
+
+def actualizacionDivisa(api_key):
     url = f"https://openexchangerates.org/api/latest.json?app_id={api_key}"
     response = requests.get(url)
     if response.status_code == 200:
         rates = json.loads(response.text)["rates"]
-        exchange_rates.update(rates)
+        divisas.update(rates)
     else:
         raise Exception("Error al obtener las tasas de cambio")
     
-actualizacion_divisa("fc62c57578864e4da8863911995bc617")
+actualizacionDivisa("fc62c57578864e4da8863911995bc617")
+
+
+#creacion ventana principal
 
 ventana = tk.Tk()
 ventana.geometry("250x250")
 ventana.title("Convertidor epico 3: Ahora es personal")
 
-def convertir(divisa_origen, divisa_destino):
-    valor_origen = float(num1.get())
-    tasa_conversion = eval(f"exchange_rates['{divisa_destino}'] / exchange_rates['{divisa_origen}']")
-    valor_destino = round((valor_origen * tasa_conversion), 2)
-    texto.config(text=f"{valor_destino} {divisa_destino}")
+#funcion con los calculos
 
-marco1 = tk.Frame(ventana)
-marco1.place(x=170, y=80)
+def convertir(divisaOrigen, divisaDestino):
+    valorOrigen = float(entradaDivisa.get())
+    tasaConversion = eval(f"divisas['{divisaDestino}'] / divisas['{divisaOrigen}']")
+    valorDestino = round((valorOrigen * tasaConversion), 2)
+    textoResultado.config(text=f"{valorDestino} {divisaDestino}")
 
-operaciones = ["USD", "EUR", "CLP", "JPY"]
-opcion_seleccionada = tk.StringVar(ventana)
-opcion_seleccionada.set(operaciones[0])
+#menu desplegable con la divisa de origen
 
-menu = tk.OptionMenu(marco1, opcion_seleccionada, *operaciones)
-menu.pack()
+operacionesOrigen = ["USD", "EUR", "CLP", "JPY"]
+opcionOrigen = tk.StringVar(ventana)
+opcionOrigen.set(operacionesOrigen[0])
 
-texto3 = tk.Label(ventana, text="Origen")
-texto3.pack()
-texto3.place(x=170, y=60)
+origen = tk.Label(ventana, text="Origen")
+origen.pack()
+origen.place(x=170, y=60)
 
-texto4 = tk.Label(ventana, text="Destino")
-texto4.pack()
-texto4.place(x=170, y=120)
+marcoOrigen = tk.Frame(ventana)
+marcoOrigen.place(x=170, y=80)
 
-marco4 = tk.Frame(ventana)
-marco4.place(x=170, y=140)
+origen = tk.OptionMenu(marcoOrigen, opcionOrigen, *operacionesOrigen)
+origen.pack()
 
-operaciones2 = ["USD", "EUR", "CLP", "JPY"]
-opcion_seleccionada2 = tk.StringVar(ventana)
-opcion_seleccionada2.set(operaciones2[0])
+#menu con la divisa de destino
 
-menu2 = tk.OptionMenu(marco4, opcion_seleccionada2, *operaciones2)
-menu2.pack()
+operacionesDestino = ["USD", "EUR", "CLP", "JPY"]
+opcionDestino = tk.StringVar(ventana)
+opcionDestino.set(operacionesDestino[0])
 
-texto2 = tk.Label(ventana, text="Cantidad a convertir")
-texto2.pack()
-texto2.place(x=30, y=80)
+destino = tk.Label(ventana, text="Destino")
+destino.pack()
+destino.place(x=170, y=120)
 
-num1 = tk.Entry(ventana)
-num1.pack()
-num1.place(x=30, y=100)
+marcoDestino = tk.Frame(ventana)
+marcoDestino.place(x=170, y=140)
 
-titulo =tk.Label(text="Bienvenid@ al convertidor\nepico de Anette")
+menuDestino = tk.OptionMenu(marcoDestino, opcionDestino, *operacionesDestino)
+menuDestino.pack()
+
+#entrada de la cantidad a convertir con un texto arriba
+textoCantidad = tk.Label(ventana, text="Cantidad a convertir")
+textoCantidad.pack()
+textoCantidad.place(x=30, y=80)
+
+entradaDivisa = tk.Entry(ventana)
+entradaDivisa.pack()
+entradaDivisa.place(x=30, y=100)
+
+#titulo dentro de la ventana
+
+titulo = tk.Label(text="Bienvenid@ al convertidor\nepico de Anette")
 titulo.pack()
 titulo.place(x=50, y=10)
 
-texto = tk.Label(ventana, text="")
-texto.pack()
-texto.place(x=30, y=120)
+#texto que muestra el resultado, se actualiza despues
+
+textoResultado = tk.Label(ventana, text="")
+textoResultado.pack()
+textoResultado.place(x=30, y=120)
+
+#boton para cambiar, la funcion del boton se cambia con la funcion de mas abajo
 
 boton = tk.Button(ventana, text="Cambiar")
 boton.pack()
 boton.place(x=100, y=200)
 
-def cambiar_funcion(*args):
-    divisa_origen = opcion_seleccionada.get()
-    divisa_destino = opcion_seleccionada2.get()
-    boton.config(command=lambda: convertir(divisa_origen, divisa_destino))
+def cambiarFuncion(*args):
+    divisaOrigen = opcionOrigen.get()
+    divisaDestino = opcionDestino.get()
+    boton.config(command=lambda: convertir(divisaOrigen, divisaDestino))
 
-opcion_seleccionada.trace("w", cambiar_funcion)
-opcion_seleccionada2.trace("w", cambiar_funcion)
+opcionOrigen.trace("w", cambiarFuncion)
+opcionDestino.trace("w", cambiarFuncion)
+
+#loop principal de la ventana, permite que se ejcute
 
 ventana.mainloop()
