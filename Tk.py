@@ -1,6 +1,20 @@
 import tkinter as tk
+from PIL import Image, ImageTk
+
+# Crear una nueva ventana
 ventana = tk.Tk()
 ventana.geometry("250x250")
+
+# Crear un Canvas del mismo tamaño que la ventana
+canvas = tk.Canvas(ventana, width=250, height=250)
+canvas.pack()
+
+
+imagen_fondo = Image.open('C:/Users/Sumir/Documents/XoQ2Mx0.png')
+
+imagen_fondo = ImageTk.PhotoImage(imagen_fondo)
+
+canvas.create_image(0, 0, anchor='nw', image=imagen_fondo)
 
 def suma():
     resultado = float(num1.get()) + float(num2.get())
@@ -44,12 +58,10 @@ titulo =tk.Label(text="Bienvenid@ a la calculadora\nepica de Anette")
 titulo.pack()
 titulo.place(x=50, y=30)
 
-marco = tk.Frame(ventana)
-marco.pack()
-marco.place(x=70, y=150)
 
-texto = tk.Label(marco, text="")
+texto = tk.Label(ventana, text="")
 texto.pack()
+texto.place(x=70, y=150)
 
 boton = tk.Button(ventana, text="Calcular")
 boton.pack()
