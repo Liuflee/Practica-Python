@@ -3,7 +3,7 @@ import requests
 import json
 from PIL import Image, ImageTk
 import time
-import os
+
 #diccionario con valor de las divisas
 
 divisas = {
@@ -35,16 +35,10 @@ ventana.title("Convertidor epico 3: Ahora es personal")
 canvas = tk.Canvas(ventana, width=250, height=250)
 canvas.pack()
 
-# Obtener el directorio actual del archivo principal
-dir_actual = os.path.dirname(os.path.abspath(__file__))
+imagenFondo = Image.open('C:/Users/Sumir/Documents/gato.png')
+imagenFondo = ImageTk.PhotoImage(imagenFondo)
 
-# Unir la ruta del directorio actual con la carpeta "img" y el nombre de la imagen
-ruta_imagen = os.path.join(dir_actual, 'img', 'gato.png')
-
-imagen_fondo = Image.open(ruta_imagen)
-imagen_fondo_tk = ImageTk.PhotoImage(imagen_fondo)
-
-canvas.create_image(0, 160, anchor='nw', image=imagen_fondo_tk)
+canvas.create_image(0, 160, anchor='nw', image=imagenFondo)
 
 #funcion con los calculos
 
@@ -114,25 +108,22 @@ textoResultado = tk.Label(ventana)
 textoResultado.pack()
 textoResultado.place(x=30, y=120)
 
-boton = tk.Button(ventana, text="Cambiar")
+def imagen():
+    global imagenFondo
+    nuevaImagen = Image.open('C:/Users/Sumir/Documents/gato2.png')
+    imagenFondo = ImageTk.PhotoImage(nuevaImagen)
+    canvas.create_image(0, 140, anchor='nw', image=imagenFondo)
 
-def cambiarFuncion(*args):
-    global imagen_fondo_tk
-    divisaOrigen = opcionOrigen.get()
-    divisaDestino = opcionDestino.get()
-    imagen_fondo_tk = imagen_fondo_tk
-    boton.config(command=lambda: (convertir(divisaOrigen, divisaDestino), imagen()))
-    
+#boton para cambiar, la funcion del boton se cambia con la funcion de mas abajo
+
+boton = tk.Button(ventana, text="Cambiar")
 boton.pack()
 boton.place(x=100, y=200)
 
-# Definir la función para cambiar la imagen de fondo
-def imagen():
-    global imagen_fondo_tk
-    ruta_nueva_imagen = os.path.join(dir_actual, 'img', 'gato2.png')
-    nueva_imagen = Image.open(ruta_nueva_imagen)
-    imagen_fondo_tk = ImageTk.PhotoImage(nueva_imagen)
-    canvas.create_image(0, 140, anchor='nw', image=imagen_fondo_tk)
+def cambiarFuncion(*args):
+    divisaOrigen = opcionOrigen.get()
+    divisaDestino = opcionDestino.get()
+    boton.config(command=lambda: (convertir(divisaOrigen, divisaDestino), imagen()))
 
 opcionOrigen.trace("w", cambiarFuncion)
 opcionDestino.trace("w", cambiarFuncion)
