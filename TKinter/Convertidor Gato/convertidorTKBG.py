@@ -3,7 +3,6 @@ import requests
 import json
 from PIL import Image, ImageTk
 
-operacionSeleccionada = "USD-EUR"
 
 #diccionario con valor de las divisas
 
