@@ -3,7 +3,7 @@ import requests
 import json
 from PIL import Image, ImageTk
 import time
-
+import urllib.request
 #diccionario con valor de las divisas
 
 divisas = {
@@ -35,9 +35,15 @@ ventana.title("Convertidor epico 3: Ahora es personal")
 canvas = tk.Canvas(ventana, width=250, height=250)
 canvas.pack()
 
-imagenFondo = Image.open('C:/Users/Sumir/Documents/gato.png')
-imagenFondo = ImageTk.PhotoImage(imagenFondo)
+url = "https://i.imgur.com/iNqMjGS.png"
+filename, headers = urllib.request.urlretrieve(url)
 
+url2 = "https://i.imgur.com/xZJ38rX.png"
+filename2, headers2 = urllib.request.urlretrieve(url2)
+
+
+imagenFondo = Image.open(filename)
+imagenFondo = ImageTk.PhotoImage(imagenFondo, format="PNG")
 canvas.create_image(0, 160, anchor='nw', image=imagenFondo)
 
 #funcion con los calculos
@@ -110,7 +116,7 @@ textoResultado.place(x=30, y=120)
 
 def imagen():
     global imagenFondo
-    nuevaImagen = Image.open('C:/Users/Sumir/Documents/gato2.png')
+    nuevaImagen = Image.open(filename2)
     imagenFondo = ImageTk.PhotoImage(nuevaImagen)
     canvas.create_image(0, 140, anchor='nw', image=imagenFondo)
 
