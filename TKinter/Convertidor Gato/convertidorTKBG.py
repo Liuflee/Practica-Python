@@ -147,7 +147,6 @@ boton = tk.Button(ventana, text="Cambiar")
 boton.pack()
 boton.place(x=100, y=200)
 
-
 '''Cambia la función del botón segun que se elija en los menús desplegable'''
 opcionOrigen.trace("w", cambiarFuncion)
 opcionDestino.trace("w", cambiarFuncion)
