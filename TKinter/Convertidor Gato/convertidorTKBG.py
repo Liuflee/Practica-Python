@@ -40,7 +40,7 @@ def convertir(divisaOrigen, divisaDestino):
         valorOrigen = float(entradaDivisa.get())
         tasaConversion = eval(f"divisas['{divisaDestino}'] / divisas['{divisaOrigen}']")
         valorDestino = round((valorOrigen * tasaConversion), 2)
-        textoResultado.config(text=f"{valorDestino} {divisaDestino}")
+        textoResultado.config(text=f"{valorDestino:,.2f} {divisaDestino}")
     except ValueError:
          messagebox.showerror("Error", "La cantidad ingresada no es un número válido") 
 
