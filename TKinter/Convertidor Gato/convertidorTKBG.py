@@ -135,8 +135,6 @@ entradaDivisa = tk.Entry(ventana)
 entradaDivisa.pack()
 entradaDivisa.place(x=30, y=100)
 
-
-
 '''Se llama a la función imprimirTexto() para escribir
 todo el texto de la ventana progresivamente'''
 imprimirTexto(textoImpresion, titulo, 0.01)
