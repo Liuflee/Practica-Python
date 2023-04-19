@@ -1,9 +1,12 @@
-import tkinter as tk, urllib.request, requests, json, time
-from PIL import Image, ImageTk
+import tkinter as tk
 from tkinter import messagebox
+import urllib.request
+import requests
+import json
+import time
+from PIL import Image, ImageTk
 
-#diccionario con valor de las divisas
-
+'''Diccionario con valor de las divisas'''
 divisas = {
     "USD": 1.0,
     "EUR": 0.8329,
@@ -13,10 +16,14 @@ divisas = {
     "MXN": 18.092843
 }
 
-'''funcion que actualiza las divisas con la api de openexchangerates.org
-se requiere un api key de openexchange'''
+'''URL con las imagenes de los gatos'''
+url = "https://i.imgur.com/iNqMjGS.png"
+gato, headers = urllib.request.urlretrieve(url)
+url2 = "https://i.imgur.com/xZJ38rX.png"
+gato2, headers2 = urllib.request.urlretrieve(url2)
 
 def actualizacionDivisa(api_key):
+    """Actualiza las tasas de cambio con la API de openexchangerates.org"""
     url = f"https://openexchangerates.org/api/latest.json?app_id={api_key}"
     response = requests.get(url)
     if response.status_code == 200:
@@ -24,12 +31,11 @@ def actualizacionDivisa(api_key):
         divisas.update(rates)
     else:
         raise Exception("Error al obtener las tasas de cambio")
-
+    
 actualizacionDivisa("fc62c57578864e4da8863911995bc617")
 
-#funcion con los calculos
-
 def convertir(divisaOrigen, divisaDestino):
+    """Convierte una cantidad de una divisa a otra"""
     try:
         valorOrigen = float(entradaDivisa.get())
         tasaConversion = eval(f"divisas['{divisaDestino}'] / divisas['{divisaOrigen}']")
@@ -38,56 +44,41 @@ def convertir(divisaOrigen, divisaDestino):
     except ValueError:
          messagebox.showerror("Error", "La cantidad ingresada no es un número válido") 
 
-#funciones que imprimen el texto progresivamente
-def imprimirTexto(texto, widget):
+def imprimirTexto(texto, widget, velocidad):
+    '''Funcion que imprime el texto progresivamente'''
     for i in range(len(texto)):
         widget.config(text=texto[:i+1])
         widget.update()
-        time.sleep(0.01)
-
-def imprimirTextoPequeño(texto, widget):
-    for i in range(len(texto)):
-        widget.config(text=texto[:i+1])
-        widget.update()
-        time.sleep(0.03)
-
-#función que cambia la imagen
+        time.sleep(velocidad)
 
 def imagen():
+    '''Cambia la imagen'''
     global imagenFondo
     nuevaImagen = Image.open(gato2)
     imagenFondo = ImageTk.PhotoImage(nuevaImagen)
     canvas.create_image(0, 140, anchor='nw', image=imagenFondo)
 
-#función que da el resultado y llama a las demas funciones
-
 def cambiarFuncion(*args):
+    """Cambia la función del botón para incluir la conversión de divisas
+    y la actualización de la imagen"""
     divisaOrigen = opcionOrigen.get()
     divisaDestino = opcionDestino.get()
     boton.config(command=lambda: (convertir(divisaOrigen, divisaDestino), imagen()))
 
-#url con las imagenes de los gatos
-
-url = "https://i.imgur.com/iNqMjGS.png"
-gato, headers = urllib.request.urlretrieve(url)
-url2 = "https://i.imgur.com/xZJ38rX.png"
-gato2, headers2 = urllib.request.urlretrieve(url2)
-
-#creacion ventana principal
-
+'''Creación de la ventana principal con su titulo'''
 ventana = tk.Tk()
 ventana.geometry("250x250")
 ventana.title("Convertidor epico 3: Ahora es personal")
 
+'''Imagen del gato1'''
 canvas = tk.Canvas(ventana, width=250, height=250)
 canvas.pack()
 
-#Foto gato 1 bg
 imagenFondo = Image.open(gato)
 imagenFondo = ImageTk.PhotoImage(imagenFondo, format="PNG")
 canvas.create_image(0, 160, anchor='nw', image=imagenFondo)
 
-#menu desplegable con la divisa de origen
+'''Menú desplegable con la divisa de origen'''
 operacionesOrigen = ["USD", "EUR", "CLP", "JPY", "ARS", "MXN"]
 opcionOrigen = tk.StringVar(ventana)
 opcionOrigen.set(operacionesOrigen[0])
@@ -98,13 +89,7 @@ marcoOrigen.place(x=170, y=80)
 menuOrigen = tk.OptionMenu(marcoOrigen, opcionOrigen, *operacionesOrigen)
 menuOrigen.pack()
 
-#Texto "Destino"
-origen = tk.Label(ventana)
-origen.pack()
-origen.place(x=170, y=60)
-textoOrigen = "Origen"
-
-#menu con la divisa de destino
+'''Menú desplegable con la divisa de destino'''
 operacionesDestino = ["USD", "EUR", "CLP", "JPY", "ARS", "MXN"]
 opcionDestino = tk.StringVar(ventana)
 opcionDestino.set(operacionesDestino[0])
@@ -115,54 +100,59 @@ marcoDestino.place(x=170, y=140)
 menuDestino = tk.OptionMenu(marcoDestino, opcionDestino, *operacionesDestino)
 menuDestino.pack()
 
-#Texto "Destino"
-destino = tk.Label(ventana)
-destino.pack()
-destino.place(x=170, y=120)
-textoDestino = "Destino"
-
-#label con el texto arriba de la entrada
-
-labelCantidad = tk.Label(ventana)
-labelCantidad.pack()
-labelCantidad.place(x=30, y=80)
-textoCantidad = "Cantidad a convertir"
-
-#entrada de la cantidad a convertir con un texto arriba
-entradaDivisa = tk.Entry(ventana)
-entradaDivisa.pack()
-entradaDivisa.place(x=30, y=100)
-
-#titulo dentro de la ventana
-
+'''Label con un titulo dentro de la ventana'''
 titulo = tk.Label()
 titulo.pack()
 titulo.place(x=50, y=10)
 textoImpresion = "Bienvenid@ al convertidor\n epico de Anette"
 
-#Se llama a las funciones para escribir el texto progresivamente
-
-imprimirTexto(textoImpresion, titulo)
-imprimirTextoPequeño(textoCantidad, labelCantidad)
-imprimirTextoPequeño(textoOrigen, origen)
-imprimirTextoPequeño(textoDestino, destino)
-
-#texto que muestra el resultado, se actualiza despues con la funcion convertir() dentro de cambiarFuncion()
-
+'''Label que muestra el resultado, se actualiza despues con la 
+funcion convertir()dentro de cambiarFuncion()'''
 textoResultado = tk.Label(ventana)
 textoResultado.pack()
 textoResultado.place(x=30, y=120)
 
+'''Label ubicado arriba del menú de origen'''
+origen = tk.Label(ventana)
+origen.pack()
+origen.place(x=170, y=60)
+textoOrigen = "Origen"
 
-#boton para cambiar, la funcion del boton se cambia con la funcion cambiarFuncion(), 
+'''Label ubicado arriba del menú de destino'''
+destino = tk.Label(ventana)
+destino.pack()
+destino.place(x=170, y=120)
+textoDestino = "Destino"
 
+'''Label ubicado arriba de la entrada de los numeros'''
+labelCantidad = tk.Label(ventana)
+labelCantidad.pack()
+labelCantidad.place(x=30, y=80)
+textoCantidad = "Cantidad a convertir"
+
+'''Entrada de los numeros'''
+entradaDivisa = tk.Entry(ventana)
+entradaDivisa.pack()
+entradaDivisa.place(x=30, y=100)
+
+
+
+'''Se llama a la función imprimirTexto() para escribir
+todo el texto de la ventana progresivamente'''
+imprimirTexto(textoImpresion, titulo, 0.01)
+imprimirTexto(textoCantidad, labelCantidad, 0.03)
+imprimirTexto(textoOrigen, origen, 0.03)
+imprimirTexto(textoDestino, destino, 0.03)
+
+'''Creación del boton'''
 boton = tk.Button(ventana, text="Cambiar")
 boton.pack()
 boton.place(x=100, y=200)
 
+
+'''Cambia la función del botón segun que se elija en los menús desplegable'''
 opcionOrigen.trace("w", cambiarFuncion)
 opcionDestino.trace("w", cambiarFuncion)
 
-#loop principal de la ventana, permite que se ejcute
-
+'''Loop principal de la ventana, permite que se ejecute'''
 ventana.mainloop()
