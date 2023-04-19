@@ -4,6 +4,7 @@ import json
 from PIL import Image, ImageTk
 import time
 import urllib.request
+from tkinter import messagebox
 #diccionario con valor de las divisas
 
 divisas = {
@@ -49,10 +50,13 @@ canvas.create_image(0, 160, anchor='nw', image=imagenFondo)
 #funcion con los calculos
 
 def convertir(divisaOrigen, divisaDestino):
-    valorOrigen = float(entradaDivisa.get())
-    tasaConversion = eval(f"divisas['{divisaDestino}'] / divisas['{divisaOrigen}']")
-    valorDestino = round((valorOrigen * tasaConversion), 2)
-    textoResultado.config(text=f"{valorDestino} {divisaDestino}")
+    try:
+        valorOrigen = float(entradaDivisa.get())
+        tasaConversion = eval(f"divisas['{divisaDestino}'] / divisas['{divisaOrigen}']")
+        valorDestino = round((valorOrigen * tasaConversion), 2)
+        textoResultado.config(text=f"{valorDestino} {divisaDestino}")
+    except ValueError:
+         messagebox.showerror("Error", "La cantidad ingresada no es un número válido") 
     
 def imprimirTexto(texto, widget):
     for i in range(len(texto)):
