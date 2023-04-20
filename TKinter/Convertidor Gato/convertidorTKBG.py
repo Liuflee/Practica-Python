@@ -58,6 +58,7 @@ def imagen():
     imagenFondo = ImageTk.PhotoImage(nuevaImagen)
     canvas.create_image(0, 140, anchor='nw', image=imagenFondo)
 
+
 def cambiarFuncion(*args):
     """Cambia la función del botón para incluir la conversión de divisas
     y la actualización de la imagen"""
