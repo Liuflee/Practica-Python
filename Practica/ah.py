@@ -1,7 +1,39 @@
 import random
 
-palabras = ("queso", "dragon", "pescado", "gato", "taza", "audifonos",)
-eleccion = random.choice(palabras)
+palabras = {
+    "queso": {
+        90: "La palabra es un alimento",
+        40: "El alimento es de color amarillo",
+        10: "El alimento se derrite"
+    },
+    "dragon": {
+        90: "La palabra es un animal mitologico",
+        40: "El animal tiene alas",
+        10: "El animal suele exhalar fuego"
+    },
+    "pescado": {
+        90: "La palabra es un animal acuatico",
+        40: "El animal puede nadar",
+        10: "El animal tiene branquias"
+    },
+    "gato": {
+        90: "La palabra es un animal terrestre",
+        40: "El animal tiene 4 patas",
+        10: "El animal es domestico"
+    },
+    "taza": {
+        90: "La palabra es un utensilio de cocina",
+        40: "El utensilio está relacionado al café",
+        10: "El utensilio sirve para beber liquidos"
+    },
+    "audifonos": {
+        90: "La palabra es un objeto electronico",
+        40: "El objeto tiene relación con la musica",
+        10: "El objeto está asociado a las orejas"
+    }
+}
+
+eleccion = random.choice(list(palabras.keys()))
 elecPlayer = 0
 puntuacion = 100
 
@@ -16,25 +48,11 @@ while True:
         if elecPlayer == eleccion:
             print(f"Ganaste, la palabra correcta era {eleccion} y tu puntuación es: {puntuacion}")
             break
-        elif eleccion == palabras[0]:
-             print("Pista: La palabra es un alimento")
-             puntuacion = puntuacion - 10
-        elif eleccion == palabras[1]:
-            print("Pista: La palabra es un animal mitológico")
+        else:
             puntuacion = puntuacion - 10
-        elif eleccion == palabras[2]:
-            print("Pista: La palabra es un animal acuático")
-            puntuacion = puntuacion - 10
-        elif eleccion == palabras[3]:
-            print("Pista: La palabra es un animal terrestre")
-            puntuacion = puntuacion - 10
-        elif eleccion == palabras[4]:
-            print("Pista: La palabra está relacionada al café")
-            puntuacion = puntuacion - 10
-        elif eleccion == palabras[5]:
-            print("Pista: La palabra está relacionada a la música")
-            puntuacion = puntuacion - 10
+            if puntuacion in palabras[eleccion]:
+                print(palabras[eleccion][puntuacion])
 
-        if puntuacion == 0:
-            print("Perdiste, tu puntuación llegó a 0")
-            break
+            if puntuacion == 0:
+                print("Perdiste, tu puntuación llegó a 0")
+                break
