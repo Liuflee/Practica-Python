@@ -9,7 +9,7 @@ def cambiar():
     textoPass.config(text=f"La contraseña es {password}")
 
 url = "https://i.imgur.com/iNqMjGS.png"
-gato, headers = urllib.request.urlretrieve(url)
+gato, headers = urllib.request.urlretrieve(url) 
 
 ventana = tk.Tk()
 ventana.geometry("250x250")

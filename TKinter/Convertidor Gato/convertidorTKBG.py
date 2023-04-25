@@ -32,7 +32,7 @@ def actualizacionDivisa(api_key):
     else:
         raise Exception("Error al obtener las tasas de cambio")
     
-actualizacionDivisa("fc62c57578864e4da8863911995bc617")
+
 
 def convertir(divisaOrigen, divisaDestino):
     """Convierte una cantidad de una divisa a otra"""
@@ -70,6 +70,8 @@ def cambiarFuncion(*args):
 ventana = tk.Tk()
 ventana.geometry("250x250")
 ventana.title("Convertidor epico 3: Ahora es personal")
+
+actualizacionDivisa("fc62c57578864e4da8863911995bc617")
 
 '''Imagen del gato1'''
 canvas = tk.Canvas(ventana, width=250, height=250)
