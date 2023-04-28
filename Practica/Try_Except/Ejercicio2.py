@@ -1,0 +1,64 @@
+'''Ejercicio 2
+En un delivery se venden 4 tipos de pan:
+• Amasado $1.500
+• Molde $1.000
+• Baguette $2.000
+• Integral $3.000
+Determine el total a pagar por un cliente, el cual puede comprar
+diferentes tipos y cantidad de pan.
+o Si el total de la venta es superior a $5000 el envío es gratis, sino
+se cobra el 10% adicional.
+Muestre los mensajes correspondientes.'''
+
+PRECIO_AMASADO = 1500
+PRECIO_MOLDE = 1000
+PRECIO_BAGUETTE = 2000
+PRECIO_INTEGRAL = 0
+
+total = 0
+cantidadAmasado = 0
+cantidadMolde = 0
+cantidadBaguette = 0
+cantidadIntegral = 0
+
+
+def totalPan(cantidad, precio):
+    global total
+    cantidad = int(input("\n¿Cuantos kilos va a querer?: "))
+    if cantidad < 0:
+        print("\nCantidad no valida\n")
+    else:
+        total += (cantidad * precio)
+
+while True:
+    try:
+        opcion = int(input("\nElija una opción:\n1 - Pan Amasado\n2 - Molde\n3 - Baguette\n4 - Integral\n5 - Terminar compra\n6 - Reiniciar compra\n"))
+        if opcion == 1:
+            totalPan(cantidadAmasado, PRECIO_AMASADO)
+        elif opcion == 2:
+            totalPan(cantidadMolde, PRECIO_MOLDE)
+        elif opcion == 3:
+            totalPan(cantidadBaguette, PRECIO_BAGUETTE)
+        elif opcion == 4:
+            totalPan(cantidadIntegral, PRECIO_INTEGRAL)
+        elif opcion == 5:
+            break
+        elif opcion == 6:
+            print("\nCompra reiniciada\n")
+            total = 0
+        else:
+            print("\nOpción no válida\n")
+    except ValueError:
+        print("\nEl valor ingresado no es valido\n")
+
+if total != 0:
+    if total > 5000:
+        print("\nTiene envio gratis")
+
+    else:
+        print(f"\nSe le cobra un 10% adicional")
+        total = total * 1.10
+
+    print(f"\nSu total es: {round(total)}")
+else:
+    print("\nCompra cancelada")
