@@ -13,14 +13,14 @@ while True:
         if opcion == 1:
             num = int(input("\nIngrese un numero: "))
             if num % 2 == 0:
-                print("El numero ingresado es par\n")
+                print("\nEl numero ingresado es par\n")
             else:
-                print("El numero es impar\n")
+                print("\nEl numero es impar\n")
         elif opcion == 2:
             fibonacci = [0, 1] 
             for i in range(2, 10): 
                 fibonacci.append(fibonacci[i-1] + fibonacci[i-2])
-            print(fibonacci)
+            print(f"\n{fibonacci}\n")
 
         elif opcion == 3:
             print("\nHasta luego!")
@@ -28,4 +28,4 @@ while True:
         else:
             print("\nOpción no válida\n")
     except ValueError:
-        print("El valor ingresado no es valido")
+        print("\nEl valor ingresado no es valido\n")
