@@ -13,34 +13,29 @@ Muestre los mensajes correspondientes.'''
 PRECIO_AMASADO = 1500
 PRECIO_MOLDE = 1000
 PRECIO_BAGUETTE = 2000
-PRECIO_INTEGRAL = 0
+PRECIO_INTEGRAL = 3000
 
 total = 0
-cantidadAmasado = 0
-cantidadMolde = 0
-cantidadBaguette = 0
-cantidadIntegral = 0
 
-
-def totalPan(cantidad, precio):
-    global total
+def totalPan(precio):
     cantidad = int(input("\n¿Cuantos kilos va a querer?: "))
     if cantidad < 0:
         print("\nCantidad no valida\n")
+        return 0
     else:
-        total += (cantidad * precio)
+        return (cantidad * precio)
 
 while True:
     try:
         opcion = int(input("\nElija una opción:\n1 - Pan Amasado\n2 - Molde\n3 - Baguette\n4 - Integral\n5 - Terminar compra\n6 - Reiniciar compra\n"))
         if opcion == 1:
-            totalPan(cantidadAmasado, PRECIO_AMASADO)
+            total += totalPan(PRECIO_AMASADO)
         elif opcion == 2:
-            totalPan(cantidadMolde, PRECIO_MOLDE)
+            total += totalPan(PRECIO_MOLDE)
         elif opcion == 3:
-            totalPan(cantidadBaguette, PRECIO_BAGUETTE)
+            total += totalPan(PRECIO_BAGUETTE)
         elif opcion == 4:
-            totalPan(cantidadIntegral, PRECIO_INTEGRAL)
+            total += totalPan(PRECIO_INTEGRAL)
         elif opcion == 5:
             break
         elif opcion == 6:
@@ -50,6 +45,7 @@ while True:
             print("\nOpción no válida\n")
     except ValueError:
         print("\nEl valor ingresado no es valido\n")
+
 
 if total != 0:
     if total > 5000:
