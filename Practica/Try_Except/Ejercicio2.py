@@ -19,15 +19,21 @@ total = 0
 
 def totalPan(precio):
     cantidad = int(input("\n¿Cuantos kilos va a querer?: "))
+    print("\n")
     if cantidad < 0:
         print("\nCantidad no valida\n")
         return 0
     else:
         return (cantidad * precio)
 
+
 while True:
+    
+    print("*" * 25)
+    print("1 - Pan Amasado\n2 - Molde\n3 - Baguette\n4 - Integral\n5 - Terminar compra\n6 - Reiniciar compra\n")
+    print("*" * 25)
     try:
-        opcion = int(input("\nElija una opción:\n1 - Pan Amasado\n2 - Molde\n3 - Baguette\n4 - Integral\n5 - Terminar compra\n6 - Reiniciar compra\n"))
+        opcion = int(input("Elija una opción: "))
         if opcion == 1:
             total += totalPan(PRECIO_AMASADO)
         elif opcion == 2:
@@ -46,7 +52,6 @@ while True:
     except ValueError:
         print("\nEl valor ingresado no es valido\n")
 
-
 if total != 0:
     if total > 5000:
         print("\nTiene envio gratis")
@@ -55,6 +60,6 @@ if total != 0:
         print(f"\nSe le cobra un 10% adicional")
         total = total * 1.10
 
-    print(f"\nSu total es: {round(total)}")
+    print(f"\nSu total es: {round((total), 1)}")
 else:
     print("\nCompra cancelada")
