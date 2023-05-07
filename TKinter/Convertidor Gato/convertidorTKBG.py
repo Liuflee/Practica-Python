@@ -4,6 +4,7 @@ import urllib.request
 import requests
 import json
 import time
+import decimal
 from PIL import Image, ImageTk
 
 '''Diccionario con valor de las divisas'''
@@ -32,17 +33,16 @@ def actualizacionDivisa(api_key):
     else:
         raise Exception("Error al obtener las tasas de cambio")
     
-
-
 def convertir(divisaOrigen, divisaDestino):
     """Convierte una cantidad de una divisa a otra"""
     try:
-        valorOrigen = float(entradaDivisa.get())
-        tasaConversion = eval(f"divisas['{divisaDestino}'] / divisas['{divisaOrigen}']")
+        valorOrigen = decimal.Decimal(entradaDivisa.get())
+        tasaConversion = decimal.Decimal(divisas[divisaDestino]) / decimal.Decimal(divisas[divisaOrigen])
         valorDestino = round((valorOrigen * tasaConversion), 2)
         textoResultado.config(text=f"{valorDestino:,.2f} {divisaDestino}")
     except ValueError:
-         messagebox.showerror("Error", "La cantidad ingresada no es un número válido") 
+         messagebox.showerror("Error", "La cantidad ingresada no es un número válido")
+
 
 def imprimirTexto(texto, widget, velocidad):
     '''Funcion que imprime el texto progresivamente'''
