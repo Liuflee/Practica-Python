@@ -1,4 +1,3 @@
-# Solicitamos al usuario un número entero
 num = int(input("Ingresa un numero: "))
 
 divisores = 0
