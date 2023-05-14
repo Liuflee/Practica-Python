@@ -1,3 +1,8 @@
+'''Escribir un programa que pida al usuario su peso (en kg) y estatura (en metros)
+calcule el índice de masa corporal y lo almacene en una variable.
+Luego, debe mostrar por pantalla la frase: “Tu índice de masa corporal es:{imc}”
+No olvide validar'''
+
 imc = 0
 
 while imc == 0: #Ciclo while general
