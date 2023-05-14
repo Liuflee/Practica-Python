@@ -11,7 +11,7 @@ while imc == 0: #Ciclo while general
     except: #Try-Except para el peso
         print("Solo debe ingresar numeros enteros")
     else:
-        if peso <= 10: #Validación del peso
+        if peso <= 0: #Validación del peso
             print("Usted es un pitufo, o no existe")
         else:
             while True: #Ciclo while para la altura y el calculo del IMC
