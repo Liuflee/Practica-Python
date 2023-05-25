@@ -32,4 +32,4 @@ if suma_ponderacion == 0:
     print("No se ingresaron notas")
 else:
     promedio /= suma_ponderacion
-    print(f"El promedio ponderado es: {promedio:.1f}")
+    print(f"El promedio ponderado es: {promedio:.1f}") 
