@@ -39,20 +39,20 @@ while True:
                 print("\nError:", e)
         break
 
-arreglo = np.array([[rd.uniform(0.0, 100.0) for i in range(fila)] for j in range(columna)])
+arreglo = np.array([[round(rd.uniform(0.0, 100.0), 2) for i in range(fila)] for j in range(columna)])
 
-print("\t\tArreglo:")
+print("Arreglo:\n")
 print(arreglo)
 print("-" * 60)
 
-print("\t\tSumas de las filas:")
+print("Sumas de las filas:\n")
 filas_final = np.sum(arreglo, axis=1)
 for i in range(len(filas_final)):
-    print(F"Suma de la columna numero {i + 1}: {filas_final[i]}")
+    print(F"Suma de la fila numero {i + 1}: {filas_final[i]:.2f}")
 print("-" * 60)
 
-print("\t\tPromedio de las columnas:")
+print("Promedio de las columnas:\n")
 columnas_final = np.mean(arreglo, axis=0)
 for i in range(len(columnas_final)):
-    print(F"Promedio de la columna numero {i + 1}: {columnas_final[i]}")
+    print(F"Promedio de la columna numero {i + 1}: {columnas_final[i]:.2f}")
 print("-" * 60)
