@@ -1,11 +1,7 @@
 '''Ingresar dos números enteros, valídelos y luego determinar y mostrar:
-
 i. Si el primero es divisible por el segundo
-
 ii. Si el segundo es divisible por el primero
-
 iii. Cuál de los dos es mayor; en caso de que sean iguales, mostrar mensaje adecuado
-
 iv. Si ambos son impares'''
 
 while True:
