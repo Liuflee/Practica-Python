@@ -9,27 +9,50 @@ números serán las dimensiones de un arreglo bidimensional.
 import numpy as np
 import random as rd
 
+class OutOfRange(Exception):
+    def __init__(self, mensaje):
+        self.mensaje = mensaje
+
 while True:
     try:
-        fila = int(input("\nIngrese las columnas del array entre 3 y 6: "))
+        print("\n")
+        fila = int(input("Ingrese las columnas del array entre 3 y 6: "))
+        print("-" * 60)
         if fila not in (3, 4, 5, 6):
-            raise ValueError()
+            raise OutOfRange("Ingrese un numero entre 3 y 6")
     except ValueError:
-        print("\nIngrese un numero entero entre 3 y 6")
+        print("\nError: Ingrese un numero entero")
+    except OutOfRange as e:
+        print("\nError:", e)
     else:
         while True:
             try:
-                columna = int(input("\nIngrese las filas del arreglo entre 3 y 6: "))
+                columna = int(input("Ingrese las filas del arreglo entre 3 y 6: "))
+                print("-" * 60)
                 if columna not in (3, 4, 5, 6):
-                    raise ValueError()
+                    raise OutOfRange("Ingrese un numero entre 3 y 6")
                 else:
                     break
             except ValueError:
-               print("\nIngrese un numero entero entre 3 y 6") 
+                print("\nError: Ingrese un numero entero")
+            except OutOfRange as e:
+                print("\nError:", e)
         break
 
 arreglo = np.array([[rd.uniform(0.0, 100.0) for i in range(fila)] for j in range(columna)])
 
-print(f"\nArreglo:\n{arreglo}")
-print(f"\nSuma de cada fila: {np.sum(arreglo, axis=1)}")
-print(f"\nPromedio de cada columna: {np.mean(arreglo, axis=0)}")
+print("\t\tArreglo:")
+print(arreglo)
+print("-" * 60)
+
+print("\t\tSumas de las filas:")
+filas_final = np.sum(arreglo, axis=1)
+for i in range(len(filas_final)):
+    print(F"Suma de la columna numero {i + 1}: {filas_final[i]}")
+print("-" * 60)
+
+print("\t\tPromedio de las columnas:")
+columnas_final = np.mean(arreglo, axis=0)
+for i in range(len(columnas_final)):
+    print(F"Promedio de la columna numero {i + 1}: {columnas_final[i]}")
+print("-" * 60)
