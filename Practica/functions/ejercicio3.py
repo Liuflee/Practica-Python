@@ -33,7 +33,8 @@ while opc != 6:
     print("\tMenú:")
     print("#" * 50)
     for i, (cafe, precio) in enumerate(precios.items(), start=1):
-        print(f"{i} - {cafe}  | ${precio}")
+        print(f"{i} - {cafe}   | ${precio}")
+        
     print("#" * 50)
     print("5 - Reiniciar compra")
     print("6 - Terminar  compra")
