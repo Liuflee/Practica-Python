@@ -30,12 +30,12 @@ def calcular_imc(peso, altura):
         print(f"{imc:.1f}: Obesidad Grado 3")
     return (imc)
 
-def validacion(tipo_dato, mensaje, minimo=0):
+def validacion(tipo_dato, mensaje, minimo=0, maximo=10e20):
     while True:
         try:
             monto = tipo_dato(input(mensaje))
-            if monto < minimo:
-                raise OutOfRange("Ingrese un numero mayor a {minimo}")
+            if not (minimo < monto < maximo):
+                raise OutOfRange(f"Ingrese un numero mayor a {minimo} y menor a {maximo}")
             else:
                 break
         except ValueError:
