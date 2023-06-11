@@ -63,13 +63,19 @@ def menu(opciones):
         print(f"{i+1} - {opcion}")
     print("-" * 50)
     while True:
-        opcion_elegida = input("Ingrese una opción: ")
-        if opcion_elegida.isdigit():
-            opcion_elegida = int(opcion_elegida)
+        try:
+            opcion_elegida = int(input("Ingrese una opción: "))
             if 1 <= opcion_elegida <= len(opciones):
                 break
-        print("-" * 50)
-        print("Opción inválida. Intente nuevamente.")
-        print("-" * 50)
+            else:
+                raise OutOfRange("Ingrese una opción dentro del rango")
+        except ValueError:
+            print("-" * 50)
+            print("Error: Ingrese un numero entero")
+            print("-" * 50)
+        except OutOfRange as e:
+            print("-" * 50)
+            print("Error:", e)
+            print("-" * 50)
     return opcion_elegida
 
