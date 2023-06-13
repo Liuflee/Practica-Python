@@ -1,21 +1,20 @@
-
 class OutOfRange(Exception):
-    def __init__(self, mensaje):
-        self.mensaje = mensaje
+    def __init__(self, msg):
+        self.msg = msg
 
-def calcular_iva(monto):
+def calculate_iva(amount):
     IVA = 0.19
-    monto_final_iva = monto * IVA
-    print(f"El monto final es {monto_final_iva}")
-    return (monto_final_iva)
+    total = amount * IVA
+    print(f"El monto final es {total}")
+    return (total)
 
-def calcular_descuento(monto, descuento):
-    monto_final_desc = monto - (monto * descuento)
-    print(f"El monto final es {monto_final_desc}")
-    return monto_final_desc
+def calculate_discount(amount, discount):
+    total = amount - (amount * discount)
+    print(f"El descuento es {total}")
+    return total
 
-def calcular_imc(peso, altura):
-    imc = peso / altura**2
+def calculate_imc(weight, height):
+    imc = weight / height**2
     if 0 < imc <= 18.5:
         print(f"{imc:.1f}: Bajo Peso")
     elif imc <= 24.9:
@@ -31,31 +30,31 @@ def calcular_imc(peso, altura):
     return (imc)
 
 
-def validacion(tipo_dato, mensaje, minimo=0, maximo=10e20):
+def validation(data_type, msg, min_value=0, max_value=10e20):
     while True:
         try:
-            monto = tipo_dato(input(mensaje))
-            if (minimo < monto < maximo):
+            amount = data_type(input(msg))
+            if (min_value < amount < max_value):
                 break
             else:
-                raise OutOfRange(f"Ingrese un numero mayor a {minimo} y menor a {maximo}")
+                raise OutOfRange(f"Ingrese un numero mayor a {min_value} y menor a {max_value}")
         except ValueError:
-            print(f"Error: Ingrese un número {tipo_dato.__name__}")
+            print(f"Error: Ingrese un número {data_type.__name__}")
         except OutOfRange as e:
-                print("Error:", e.mensaje)
-    return monto
+                print("Error:", e.msg)
+    return amount
 
-def menu(opciones):
+def menu(options):
     print("-" * 50)
     print("\t\tMenú")
     print("-" * 50)
-    for i, opcion in enumerate(opciones):
-        print(f"{i+1} - {opcion}")
+    for enum, option in enumerate(options):
+        print(f"{enum+1} - {option}")
     print("-" * 50)
     while True:
         try:
-            opcion_elegida = int(input("Ingrese una opción: "))
-            if 1 <= opcion_elegida <= len(opciones):
+            chosen_option = int(input("Ingrese una opción: "))
+            if 1 <= chosen_option <= len(options):
                 break
             else:
                 raise OutOfRange("Ingrese una opción dentro del rango")
@@ -67,4 +66,4 @@ def menu(opciones):
             print("-" * 50)
             print("Error:", e)
             print("-" * 50)
-    return opcion_elegida
+    return chosen_option

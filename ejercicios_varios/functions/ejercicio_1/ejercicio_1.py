@@ -1,32 +1,35 @@
-'''Se pide escribir las instrucciones necesarias para crear un menú con las opciones de:
-Calcular_Iva
-Descuento
-Calcular_Imc'''
+'''
+Se pide escribir las instrucciones necesarias para crear un menú con las opciones de:
+1 - Calcular_iva
+2 - Descuento
+3 - Calcular_Imc
+'''
 
-import funciones as fn
+import functions as fn
 
 def main():
           
-    opc = 0
-    opciones = [
+    menu_option = 0
+    options = [
         "Calcular IVA",
         "Calcular descuento",
-        "Calcular IMC"
+        "Calcular IMC",
+        "Salir"
     ]
 
-    while opc != 4:
-        opc = fn.menu(opciones)
-        if opc == 1:
-            monto_iva = fn.validacion(int, mensaje="Ingrese el monto a calcular: ")
-            fn.calcular_iva(monto_iva)
-        elif opc == 2:
-            monto_desc = fn.validacion(int, mensaje="Ingrese el monto a calcular: ")
-            descuento = fn.validacion(float, mensaje="Ingrese el descuento a calcular: ", maximo=1)
-            fn.calcular_descuento(monto_desc, descuento)
-        elif opc == 3:
-            peso = fn.validacion(int, mensaje="Ingrese su peso: ")
-            altura = fn.validacion(float, mensaje="Ingrese su altura: ")
-            fn.calcular_imc(peso, altura)
+    while menu_option != 4:
+        menu_option = fn.menu(options)
+        if menu_option == 1:
+            iva_amount = fn.validation(int, msg="Ingrese el monto a calcular: ")
+            fn.calculate_iva(iva_amount)
+        elif menu_option == 2:
+            monto_desc = fn.validation(int, msg="Ingrese el monto a calcular: ")
+            descuento = fn.validation(float, msg="Ingrese el descuento a calcular: ", max_value=1)
+            fn.calculate_discount(monto_desc, descuento)
+        elif menu_option == 3:
+            weight = fn.validation(int, msg="Ingrese su peso (kg): ")
+            height = fn.validation(float, msg="Ingrese su altura (m): ")
+            fn.calculate_imc(weight, height)
     print("Hasta luego")
 
 if __name__ =="__main__":
