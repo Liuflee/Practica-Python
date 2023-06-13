@@ -23,9 +23,9 @@ def main():
             iva_amount = fn.validation(int, msg="Ingrese el monto a calcular: ")
             fn.calculate_iva(iva_amount)
         elif menu_option == 2:
-            monto_desc = fn.validation(int, msg="Ingrese el monto a calcular: ")
-            descuento = fn.validation(float, msg="Ingrese el descuento a calcular: ", max_value=1)
-            fn.calculate_discount(monto_desc, descuento)
+            discount_amount = fn.validation(int, msg="Ingrese el monto a calcular: ")
+            discount = fn.validation(float, msg="Ingrese el descuento a calcular: ", max_value=100)
+            fn.calculate_discount(discount_amount, discount)
         elif menu_option == 3:
             weight = fn.validation(int, msg="Ingrese su peso (kg): ")
             height = fn.validation(float, msg="Ingrese su altura (m): ")

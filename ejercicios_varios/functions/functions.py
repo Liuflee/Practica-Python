@@ -1,3 +1,5 @@
+import numpy as np
+import random as rd
 class OutOfRange(Exception):
     def __init__(self, msg):
         self.msg = msg
@@ -67,4 +69,13 @@ def menu(options):
             print("Error:", e)
             print("-" * 50)
     return chosen_option
+
+def create_array(column, row):
+    array = np.array([[rd.randint(100, 200) for i in range(column)] for j in range(row)])
+    return array
+
+def create_second_array(array1, array2):
+    array_final = np.add(array1, array2)
+    print(array_final)
+
 
