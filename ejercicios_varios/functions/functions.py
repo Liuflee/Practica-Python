@@ -82,6 +82,6 @@ def create_sum_array(array1, array2):
 
 def string_decorator(string=None):
     if string is not None:
-        print("-" * 50)
+        print("-" * 60)
         print(string)
-    print("-" * 50)
+    print("-" * 60)
