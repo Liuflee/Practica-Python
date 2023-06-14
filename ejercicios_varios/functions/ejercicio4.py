@@ -1,7 +1,10 @@
+'''Ejercicio 4: Escribir una función que reciba dos arrays y 
+devuelva la suma de los indices en la misma posición de cada array.'''
+
 import functions as fn
 
 def main():
-    
+
     fn.string_decorator("Ejercicio 4")
     shape = fn.validation(int, "Ingrese las dimensiones de los arreglo (Maximo = 10): ", 1, 11)
     array = fn.create_array(shape)
