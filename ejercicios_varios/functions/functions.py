@@ -1,5 +1,7 @@
 import numpy as np
 import random as rd
+
+# Funciones
 class OutOfRange(Exception):
     def __init__(self, msg):
         self.msg = msg
