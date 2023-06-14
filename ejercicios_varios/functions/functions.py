@@ -72,12 +72,16 @@ def menu(options):
             print("-" * 50)
     return chosen_option
 
-def create_array(column, row):
-    array = np.array([[rd.randint(100, 200) for i in range(column)] for j in range(row)])
+def create_array(shape):
+    array = np.array([[rd.randint(100, 200) for i in range(shape)] for j in range(shape)])
     return array
 
-def create_second_array(array1, array2):
+def create_sum_array(array1, array2):
     array_final = np.add(array1, array2)
-    print(array_final)
+    return array_final
 
-
+def string_decorator(string=None):
+    if string is not None:
+        print("-" * 50)
+        print(string)
+    print("-" * 50)
