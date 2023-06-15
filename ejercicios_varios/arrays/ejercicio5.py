@@ -21,12 +21,17 @@ print("-" * 60)
 
 arreglo = fn.create_array(fila, columna)
 
+print("-" * 60)
+
 print("Arreglo:\n")
 print(arreglo)
+
+print("-" * 60)
+
+print("Promedio de las columnas:\n")
+fn.mean_by_column(arreglo)
+
 print("-" * 60)
 
 print("Sumas de las filas:\n")
 fn.sum_by_row(arreglo)
-
-print("Promedio de las columnas:\n")
-fn.mean_by_column(arreglo)

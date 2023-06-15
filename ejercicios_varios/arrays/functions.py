@@ -25,14 +25,16 @@ def create_array(rows, columns):
 
 def mean_by_column(array):
     print("-" * 60)
-    row_sum = np.sum(array, axis=1)
-    for i in range(len(row_sum)):
-        print(F"Suma de la fila numero {i + 1}: {row_sum[i]:.2f}")
+    column_mean = np.mean(array, axis=0)
+    for i in range(len(column_mean)):
+        print(F"Promedio de la columna numero {i + 1}: {column_mean[i]:.2f}")
     print("-" * 60)
 
 def sum_by_row(array):
     print("-" * 60)
-    column_mean = np.mean(array, axis=0)
-    for i in range(len(column_mean)):
-        print(F"Promedio de la columna numero {i + 1}: {column_mean[i]:.2f}")
+    row_sum = np.sum(array, axis=1)
+    for i in range(len(row_sum)):
+        print(F"Suma de la fila numero {i + 1}: {row_sum[i]:.2f}")
+    print("-" * 60)
+    
 print("-" * 60)
