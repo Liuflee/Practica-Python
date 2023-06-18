@@ -34,14 +34,25 @@ def calculate_imc(weight, height):
     return (imc)
 
 
-def validation(data_type, msg, min_value=0, max_value=10e20):
+def validation(data_type, msg, min_value=np.NINF, max_value=np.inf):
+    
+    if max_value == np.inf:
+        str_max = "infinito"
+    else:
+        str_max = max_value
+
+    if str_min == np.NINF:
+        str_min = "infinito negativo"
+    else:
+        str_min = min_value
+
     while True:
         try:
             amount = data_type(input(msg))
             if (min_value < amount < max_value):
                 break
             else:
-                raise OutOfRange(f"Ingrese un numero mayor a {min_value} y menor a {max_value}")
+                raise OutOfRange(f"Ingrese un numero mayor a {str_min} y menor a {str_max}")
         except ValueError:
             print(f"Error: Ingrese un número {data_type.__name__}")
         except OutOfRange as e:

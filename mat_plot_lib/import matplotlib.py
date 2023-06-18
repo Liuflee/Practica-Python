@@ -19,7 +19,7 @@ def dias():
         response = requests.get(url)
         data = response.json()
         rate = data['rates'][target_currency]
-        historical_data[str(date)] = rate
+        historical_data[str(date)] = rate   
 
  # establece la moneda objetivo en pesos mexicanos
          # crea un diccionario para almacenar los datos históricos

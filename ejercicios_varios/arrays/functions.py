@@ -20,7 +20,7 @@ def validation(data_type, msg, min_value=0, max_value=10e20):
     return amount
 
 def create_array(rows, columns):
-    array = np.array([[round(rd.uniform(0.0, 100.0), 2) for i in range(rows)] for j in range(columns)])
+    array = np.array([[round((validation(float, "Ingrese un numero real: ", min_value=float('-inf'))), 2)  for i in range(rows)] for j in range(columns)])
     return array
 
 def mean_by_column(array):
@@ -36,5 +36,5 @@ def sum_by_row(array):
     for i in range(len(row_sum)):
         print(F"Suma de la fila numero {i + 1}: {row_sum[i]:.2f}")
     print("-" * 60)
-    
+
 print("-" * 60)

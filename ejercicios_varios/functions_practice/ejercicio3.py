@@ -25,16 +25,17 @@ DESCUENTO = 0.1
 print("\nBienvenid@ a Code Brew")
 while opc != 6:
     opc = fn.menu()
-
     if opc in range(1, 5):
+
         cafe_seleccionado = list(precios.keys())[opc - 1]
         precio_cafe = precios[cafe_seleccionado]
         total_cafe += precio_cafe
         print(f"{cafe_seleccionado}  ${precio_cafe} añadido al total: ${total_cafe}")
+
     elif opc == 5:
         total_cafe = 0
         print("\nCompra reiniciada el total es 0")
-
+        
 if total_cafe >= 3000:
     total_final = calculate_discount(total_cafe, DESCUENTO)
     print("#" * 50)

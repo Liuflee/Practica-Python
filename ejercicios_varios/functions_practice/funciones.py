@@ -50,7 +50,7 @@ def area_circulo(radio):
     print(f"El área del circulo es: {area:.1f}")
     return area
 
-def perimetro_cuadrado(lado):
+def perimetro_cuadrado(lado):   
     perimetro = (4 * lado)
     print(f"El perimetro del cuadrado es: {perimetro:.1f}")
     return perimetro

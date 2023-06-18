@@ -8,10 +8,9 @@ def funcionInicial(funcion, lista):
         l.append(funcion(i))
     return l
 
-def duplicar(iteracion): 
-    return iteracion + iteracion
-
 listaInput = [1, 2, 3, 4]
+
+duplicar = lambda x: x * 2 
 
 print(funcionInicial(duplicar, listaInput))
 
