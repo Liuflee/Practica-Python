@@ -19,5 +19,5 @@ while True:
             print(f"El numero {num} se encuentra en el arreglo")
         else:
             print("No se encontró el numero en el arreglo")
-        break                      
-                    
+        break   
+
